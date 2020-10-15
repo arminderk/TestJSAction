@@ -28,4 +28,4 @@ jobs:
           pr_assignee: ${{ github.event.pull_request.assignee }}
           # GitHub token secret
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          if: ${{ github.event_name }} == 'pull_request'
+        if: ${{ github.event_name }} == 'pull_request'
