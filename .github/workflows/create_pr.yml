@@ -2,12 +2,15 @@ name: Create-PR
 
 # Run this workflow every time there's a new push into staging
 on:
-  push:
+  pull_request:
+    types: [ closed ]
     branches: [ staging ]
     
 jobs:
   # This workflow contains a single job called "build"
   build:
+    if: github.event.pull_request.merged == true
+    
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -32,4 +35,3 @@ jobs:
           pr_assignee: ${{ github.event.pull_request.assignee }}
           # GitHub token secret
           github_token: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ github.event_name }} == 'pull_request'
